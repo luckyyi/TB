@@ -116,7 +116,11 @@ namespace TB
             int k = 0;
             imgs.ForEach(p => {
                 k++;
-                wc.DownloadFile(p.Img, "{0}\\D{1}.jpg".FormatWith(savePath, k.ToString().PadLeft(3, '0')));
+                try
+                {
+                    wc.DownloadFile(p.Img, "{0}\\D{1}.jpg".FormatWith(savePath, k.ToString().PadLeft(3, '0')));
+                }
+                catch { }
             });
 
             Response.Write("图片下载完成。 主图： {0}, 颜色图：{1}, 详情图：{2} {3}".FormatWith(i, colors.Count, k, DateTime.Now.ToString("HH:mm:ss")));
